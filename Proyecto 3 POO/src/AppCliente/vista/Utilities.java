@@ -75,6 +75,22 @@ public abstract class Utilities {
             default -> null;
         };
     }
+    
+    public static String convertVisibleToString(TVisibilidad visible){        
+        return switch (visible) {
+            case VISIBLE -> "Visible";
+            case NO_VISIBLE -> "No visible";
+            default -> "Ambos";
+        };
+    }
+    
+    public static int convertVisibleToInt(TVisibilidad visible){        
+        return switch (visible) {
+            case VISIBLE -> 0;
+            case NO_VISIBLE -> 1;
+            default -> -1;
+        };
+    }
 
     
 }

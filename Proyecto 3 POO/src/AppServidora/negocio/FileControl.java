@@ -83,8 +83,6 @@ public class FileControl {
             return lista;
 
         } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getCause());
-            System.out.println(ex.getException());
             System.out.println("No se pudo cargar el registro del archivo " + nombreArchivo);
             return null;
         } catch (FileNotFoundException ex) {

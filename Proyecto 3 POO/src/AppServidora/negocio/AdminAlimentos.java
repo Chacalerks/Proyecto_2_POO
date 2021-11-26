@@ -140,7 +140,6 @@ public class AdminAlimentos {
         ArrayList<Alimento> alimentosConultados = new ArrayList();
         for (Alimento a : allAlimentos){
             String codigo = a.getTipo();
-            System.out.println("El verdadero cidog: "+codigo);
 
             if(!tipo.equals("") && visibilidad != null){                
                 if(codigo.equals(tipo) && a.getVisibilidad().equals(visibilidad))
