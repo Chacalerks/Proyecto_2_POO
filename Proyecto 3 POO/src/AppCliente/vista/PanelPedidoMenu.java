@@ -20,7 +20,8 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
     private JPanel usefulPanel;
     private JPanel contentPanel;
     private JPanel backPanel;
-    private PanelPedidoMesa pedidoMesa;    
+    private PanelPedidoMesa pedidoMesa;   
+    private PanelPedidoExpress pedidoExpress;
     
     public PanelPedidoMenu(JPanel useful,JPanel content, JPanel back, Carrito carrito) {
         initComponents();
@@ -29,7 +30,8 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         backPanel = back;
         //panelCatalogo = new PanelCatalogo(useful, content, (JPanel)this);
         
-        pedidoMesa = new PanelPedidoMesa(carrito);
+        pedidoMesa = new PanelPedidoMesa(content, this, carrito);
+        pedidoExpress = new PanelPedidoExpress(content, this, carrito);
         imgExpress.setIcon(Utilities.loadResizeIcon("src\\img\\express.png", 150));        
         imgREcoger.setIcon(Utilities.loadResizeIcon("src\\img\\recoger.png", 150));  
         imgMesa.setIcon(Utilities.loadResizeIcon("src\\img\\mesa.png", 150));  
@@ -112,6 +114,11 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         add(btnRecoger, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 250, 250));
 
         btnExpress.setBackground(new java.awt.Color(212, 212, 212));
+        btnExpress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExpressMouseClicked(evt);
+            }
+        });
         btnExpress.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgExpress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -165,6 +172,12 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         Utilities.cargarPanel(contentPanel, backPanel);
         
     }//GEN-LAST:event_imgArrowLeftMouseClicked
+
+    private void btnExpressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExpressMouseClicked
+        // TODO add your handling code here:
+        Utilities.cargarPanel(contentPanel, pedidoExpress);
+        pedidoExpress.loadDatos();
+    }//GEN-LAST:event_btnExpressMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

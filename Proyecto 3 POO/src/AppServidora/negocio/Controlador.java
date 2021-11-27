@@ -6,6 +6,7 @@
 package AppServidora.negocio;
 
 import AppServidora.modelo.Alimento;
+import AppServidora.modelo.Constantes;
 import AppServidora.modelo.Pedido;
 import AppServidora.modelo.TVisibilidad;
 import general.Peticion;
@@ -81,7 +82,21 @@ public class Controlador {
         }else if( accion== TipoAccion.AGREGAR_PEDIDO){
             Pedido pedido = (Pedido) peticionRecibida.getDatosEntrada();
             peticionRecibida.setDatosSalida(agregarPedido(pedido));
+        }else if( accion== TipoAccion.SETTINGS){
+            ArrayList numbers = (ArrayList) peticionRecibida.getDatosEntrada();
+            System.out.println("\n\nConstante recibida por el servidor "+(int)numbers.get(0));
+            Constantes.setContantEmpaque((int)numbers.get(0));
+            Constantes.setContanteEntrega((int)numbers.get(1));
+            peticionRecibida.setDatosSalida(true);
+        }else if( accion== TipoAccion.LOAD_CONST){
+            ArrayList numbers = new ArrayList();
+            
+            numbers.add(Constantes.getContantEmpaque());
+            numbers.add(Constantes.getContanteEntrega());
+            peticionRecibida.setDatosSalida(numbers);
         }
+        
+        
                 
         
         return peticionRecibida;

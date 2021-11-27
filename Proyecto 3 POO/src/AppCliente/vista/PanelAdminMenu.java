@@ -21,12 +21,15 @@ public class PanelAdminMenu extends javax.swing.JPanel {
     private JPanel backPanel;
     
     private PanelCatalogo panelCatalogo;
+    private PanelAdminSettings adminSettingsPanel;
     public PanelAdminMenu(JPanel useful, JPanel content, JPanel back) {
         initComponents();
         usefulPanel = useful;
         contentPanel = content; 
         backPanel = back;
+        
         panelCatalogo = new PanelCatalogo(useful, content, (JPanel)this);
+        adminSettingsPanel = new PanelAdminSettings(content, this);
         
         imgCatalogo.setIcon(Utilities.loadResizeIcon("src\\img\\catalogo.png", 150));
         imgPedidos.setIcon(Utilities.loadResizeIcon("src\\img\\pedidos.png", 150));        
@@ -193,6 +196,7 @@ public class PanelAdminMenu extends javax.swing.JPanel {
 
     private void btnSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingsMouseClicked
         // TODO add your handling code here:
+        Utilities.cargarPanel(contentPanel, adminSettingsPanel);
     }//GEN-LAST:event_btnSettingsMouseClicked
 
 

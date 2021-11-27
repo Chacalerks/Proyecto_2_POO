@@ -13,8 +13,8 @@ public class PExpress extends Pedido{
     
     private String númeroTelefono;
     private String direccion;
-    private int costoEmpaque;
-    private int costoExpress;
+    private static int costoEmpaque = Constantes.getContantEmpaque();
+    private static int costoExpress  = Constantes.getContanteEntrega();
     
     public PExpress(int id, Carrito carrito, double precio) {
         super(id, carrito, precio);
@@ -24,9 +24,7 @@ public class PExpress extends Pedido{
         super(id, carrito, precio);
         this.númeroTelefono = númeroTelefono;
         this.direccion = direccion;
-    }
-    
-    
+    }   
 
     public String getNúmeroTelefono() {
         return númeroTelefono;
@@ -42,6 +40,22 @@ public class PExpress extends Pedido{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public static int getCostoEmpaque() {
+        return costoEmpaque;
+    }
+
+    public static void setCostoEmpaque(int costoEmpaque) {
+        PExpress.costoEmpaque = costoEmpaque;
+    }
+
+    public static int getCostoExpress() {
+        return costoExpress;
+    }
+
+    public static void setCostoExpress(int costoExpress) {
+        PExpress.costoExpress = costoExpress;
     }
 
     @Override

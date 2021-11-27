@@ -9,16 +9,25 @@ package AppServidora.modelo;
  *
  * @author muril
  */
-public abstract class ConstanteEntrega {
+public abstract class Constantes{
     
-     public static int contanteEntrega;
+     public static int contanteEntrega =321;
+     public static int contantEmpaque;
 
     public static int getContanteEntrega() {
         return contanteEntrega;
     }
 
     public static void setContanteEntrega(int contanteEntrega) {
-        ConstanteEntrega.contanteEntrega = contanteEntrega;
+        Constantes.contanteEntrega = contanteEntrega;
+    }
+
+    public static int getContantEmpaque() {
+        return contantEmpaque;
+    }
+
+    public static void setContantEmpaque(int contantEmpaque) {
+        Constantes.contantEmpaque = contantEmpaque;
     }
      
      

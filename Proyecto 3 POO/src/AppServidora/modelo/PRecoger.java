@@ -13,7 +13,7 @@ public class PRecoger extends Pedido {
     
     private String nombre;
     private String celular;
-    private static int costoEmpaque;
+    private static int costoEmpaque = Constantes.getContantEmpaque();
 
     public PRecoger(int id, Carrito carrito, double precio) {
         super(id, carrito, precio);
