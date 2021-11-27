@@ -14,65 +14,50 @@ import java.util.List;
  *
  * @author muril
  */
-public class Pedido implements Serializable{
+public abstract class Pedido implements Serializable{
     
-    private ArrayList<Alimento> alimentos; 
-    private int id;
-    private int precio;
-    private String lugar; 
+    protected int id;
+    protected Carrito carrito; 
+    protected double precio;
 
-    public Pedido(ArrayList<Alimento> alimentos, int id, int precio, String lugar) {
-        this.alimentos = alimentos;
+    public Pedido(int id, Carrito carrito, double precio) {
         this.id = id;
+        this.carrito = carrito;
         this.precio = precio;
-        this.lugar = lugar;
     }
 
-    public List<Alimento> getPedido() {
-        return alimentos;
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getPrecio() {
-        return precio;
-    }
-
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setPedido(ArrayList<Alimento> alimentos) {
-        this.alimentos = alimentos;
-    }
-
-    public int getId() {
-        return id;
-    }
-    
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
+    
+    public abstract String mostrarDesgloce();
+        
+    
 
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
-    }
-
-    public ArrayList<Alimento> getAlimentos() {
-        return alimentos;
-    }
-
-    public void setAlimentos(ArrayList<Alimento> alimentos) {
-        this.alimentos = alimentos;
-    }
 
     @Override
     public String toString() {
-        return "Pedido{" + "alimentos=" + alimentos + ", id=" + id + ", precio=" + precio + ", lugar=" + lugar + '}';
+        return "Pedido: " + "id: " + id + ", carrito: " + carrito + ", precio: " + precio + ", tipo de entrega: " ;
     }
-
-
-    
 }

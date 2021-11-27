@@ -6,6 +6,7 @@
 package AppServidora.negocio;
 
 import AppServidora.modelo.Alimento;
+import AppServidora.modelo.Pedido;
 import AppServidora.modelo.TVisibilidad;
 import general.Peticion;
 import general.TipoAccion;
@@ -24,6 +25,7 @@ public class Controlador {
     private AdmUsuarios admUsr = new AdmUsuarios();
     private AdminAlimentos adminAlimentos = new AdminAlimentos();
     private FileControl fileControl = new FileControl(); 
+    private AdminPedidos adminPedidos = new AdminPedidos();
 
     public Controlador() {
     }
@@ -31,10 +33,12 @@ public class Controlador {
     public Peticion procesarPeticion(Peticion peticionRecibida) {
         TipoAccion accion = peticionRecibida.getAccion();
 
-        if(accion == TipoAccion.SALUDAR){ 
-            peticionRecibida.setDatosSalida("Saludos cliente " + peticionRecibida.getDatosEntrada() + " desde el servidor!");
-            ArrayList datos = new ArrayList();
-            peticionRecibida.setOutPutList(datos);
+        if(accion == TipoAccion.CARGAR_ALIMENTOS){ 
+            ArrayList arrayDatos = (ArrayList) peticionRecibida.getDatosEntrada(); 
+            List<Object> datosProductos = fileControl.loadFile("src\\AppServidora\\files\\"+((String)arrayDatos.get(0)));
+            for (Object i: datosProductos)                    
+                adminAlimentos.agregar((Alimento)i); 
+            peticionRecibida.setDatosSalida(cargarAlimentos());
 
         }else if( accion== TipoAccion.INGRESAR){ 
              String credenciales = (String) peticionRecibida.getDatosEntrada();
@@ -45,16 +49,17 @@ public class Controlador {
         }else if( accion== TipoAccion.VER_PRODUCTOS){
             ArrayList arrayDatos = (ArrayList) peticionRecibida.getDatosEntrada();                
 
-            List<Object> datosProductos = fileControl.loadFile("src\\AppServidora\\files\\"+((String)arrayDatos.get(0)));
-
-            ArrayList<Alimento> alimentosFiltrados = new ArrayList();
-
-            for (Object i: datosProductos)                    
-                adminAlimentos.agregar((Alimento)i);                    
+            ArrayList<Alimento> alimentosFiltrados = new ArrayList();               
 
             if(arrayDatos.size() > 1){
-                alimentosFiltrados = filtrarAlimentos((String)arrayDatos.get(1),(TVisibilidad)arrayDatos.get(2));
-                peticionRecibida.setDatosSalida(cargarAlimentos(alimentosFiltrados));
+                if((int)arrayDatos.get(3) == 0){
+                    alimentosFiltrados = filtrarAlimentos((String)arrayDatos.get(1),(TVisibilidad)arrayDatos.get(2));
+                    peticionRecibida.setDatosSalida(cargarAlimentos(alimentosFiltrados));
+                }else{
+                    alimentosFiltrados = filtrarAlimentos((String)arrayDatos.get(1),(TVisibilidad)arrayDatos.get(2));
+                    peticionRecibida.setDatosSalida(cargarAlimentosCliente(alimentosFiltrados));
+                }
+                
             }else{
                 peticionRecibida.setDatosSalida(cargarAlimentos());
             }
@@ -73,8 +78,9 @@ public class Controlador {
            String codigo = (String) peticionRecibida.getDatosEntrada();
            peticionRecibida.setDatosSalida(consultarAlimento(codigo));                
 
-        }else if( accion== TipoAccion.AGREGAR_CARRITO){
-
+        }else if( accion== TipoAccion.AGREGAR_PEDIDO){
+            Pedido pedido = (Pedido) peticionRecibida.getDatosEntrada();
+            peticionRecibida.setDatosSalida(agregarPedido(pedido));
         }
                 
         
@@ -113,6 +119,20 @@ public class Controlador {
     
     public DefaultTableModel cargarAlimentos() {
         return Cargador.cargarAlimentos(adminAlimentos.getAllAlimentos());
+    }
+    
+    /**
+     * método del controlador para una instancia de un pedido al pedido
+     * @param nuevoPedido El pedido a agregar
+     * @return true/false si se agregó el sismo
+     */    
+    public boolean agregarPedido(Pedido nuevoPedido) {        
+        return adminPedidos.agregar(nuevoPedido);        
+
+    }
+    
+    public DefaultTableModel cargarAlimentosCliente(ArrayList<Alimento> alimentos) {
+        return Cargador.cargarAlimentosCliente(alimentos);
     }
     
     public DefaultTableModel cargarAlimentos(ArrayList<Alimento> alimentos) {

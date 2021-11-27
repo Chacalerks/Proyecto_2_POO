@@ -18,19 +18,20 @@ public class PanelAdminMenu extends javax.swing.JPanel {
      */
     private JPanel usefulPanel;
     private JPanel contentPanel;
-    private JPanel back;
+    private JPanel backPanel;
+    
     private PanelCatalogo panelCatalogo;
-    public PanelAdminMenu(JPanel panel, JPanel content, JPanel backPanel) {
+    public PanelAdminMenu(JPanel useful, JPanel content, JPanel back) {
         initComponents();
-        usefulPanel = panel;
+        usefulPanel = useful;
         contentPanel = content; 
-        back = backPanel;
-        panelCatalogo = new PanelCatalogo(panel, content, (JPanel)this);
+        backPanel = back;
+        panelCatalogo = new PanelCatalogo(useful, content, (JPanel)this);
         
         imgCatalogo.setIcon(Utilities.loadResizeIcon("src\\img\\catalogo.png", 150));
         imgPedidos.setIcon(Utilities.loadResizeIcon("src\\img\\pedidos.png", 150));        
         imgEstadisticas.setIcon(Utilities.loadResizeIcon("src\\img\\stadistics.png", 150));  
-        
+        imgSettings.setIcon(Utilities.loadResizeIcon("src\\img\\setting.png", 150));  
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));
         
     }
@@ -55,6 +56,9 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         btnEstadisticas = new javax.swing.JPanel();
         imgEstadisticas = new javax.swing.JLabel();
         lbSismos16 = new javax.swing.JLabel();
+        btnSettings = new javax.swing.JPanel();
+        imgSettings = new javax.swing.JLabel();
+        lbSismos17 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -100,7 +104,7 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         lbSismos13.setToolTipText("");
         btnCatalogo.add(lbSismos13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 120, 40));
 
-        add(btnCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 250, 250));
+        add(btnCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, 250, 250));
 
         btnPedidos.setBackground(new java.awt.Color(212, 212, 212));
         btnPedidos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,11 +150,36 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         btnEstadisticas.add(lbSismos16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 130, 40));
 
         add(btnEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 250, 250));
+
+        btnSettings.setBackground(new java.awt.Color(212, 212, 212));
+        btnSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSettingsMouseClicked(evt);
+            }
+        });
+        btnSettings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        imgSettings.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
+        imgSettings.setToolTipText("");
+        imgSettings.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        imgSettings.setIconTextGap(2);
+        imgSettings.setPreferredSize(new java.awt.Dimension(500, 500));
+        btnSettings.add(imgSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
+
+        lbSismos17.setBackground(new java.awt.Color(0, 0, 0));
+        lbSismos17.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        lbSismos17.setForeground(new java.awt.Color(0, 0, 0));
+        lbSismos17.setText("Ajustes");
+        lbSismos17.setToolTipText("");
+        btnSettings.add(lbSismos17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 90, 40));
+
+        add(btnSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 250, 250));
     }// </editor-fold>//GEN-END:initComponents
 
     private void imgArrowLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgArrowLeftMouseClicked
         // TODO add your handling code here:
-        Utilities.cargarPanel(contentPanel, back);
+        Utilities.cargarPanel(contentPanel, backPanel);
     }//GEN-LAST:event_imgArrowLeftMouseClicked
 
     private void btnCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatalogoMouseClicked
@@ -162,18 +191,25 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEstadisticasMouseClicked
 
+    private void btnSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSettingsMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnCatalogo;
     private javax.swing.JPanel btnEstadisticas;
     private javax.swing.JPanel btnPedidos;
+    private javax.swing.JPanel btnSettings;
     private javax.swing.JLabel imgArrowLeft;
     private javax.swing.JLabel imgCatalogo;
     private javax.swing.JLabel imgEstadisticas;
     private javax.swing.JLabel imgPedidos;
+    private javax.swing.JLabel imgSettings;
     private javax.swing.JLabel lbSismos13;
     private javax.swing.JLabel lbSismos14;
     private javax.swing.JLabel lbSismos15;
     private javax.swing.JLabel lbSismos16;
+    private javax.swing.JLabel lbSismos17;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,7 +39,7 @@ public class Alimento implements Serializable {
     }
     
     public Alimento(String codigo, String nombre, String descripcion, int tamañoPorcion,
-            int piezasPorcion, int caloriasPorcion, int caloriasPieza, double precio, String img) {
+        int piezasPorcion, int caloriasPorcion, int caloriasPieza, double precio, String img) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -79,11 +79,14 @@ public class Alimento implements Serializable {
         return piezasPorcion;
     }
 
-    public int getCaloriasPorcion() {
+    public int getCaloriasPorcion() {        
         return caloriasPorcion;
     }
 
     public int getCaloriasPieza() {
+        if(caloriasPieza == 0){
+            return caloriasPorcion/2;
+        }
         return caloriasPieza;
     }
 

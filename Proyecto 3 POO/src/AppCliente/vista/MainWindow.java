@@ -31,8 +31,11 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form FrmSaludo
      */
-    private  PanelLogin adminPanel;
+    private PanelLogin adminPanel;
+    private PanelClienteOrdenar clienteOrdenarPanel;
+    private PanelCarrito carritoPanel;
     public static JPanel last;
+    
 
     
     public MainWindow() {
@@ -41,9 +44,11 @@ public class MainWindow extends javax.swing.JFrame {
         imgAdmin.setIcon(Utilities.loadResizeIcon("src\\img\\admin.png", 150));
         imgCliente.setIcon(Utilities.loadResizeIcon("src\\img\\cliente.png", 150));        
         imgLogo.setIcon(Utilities.loadResizeIcon("src\\img\\LOGO.png", 350));  
-
         
+        carritoPanel = new PanelCarrito();
+        clienteOrdenarPanel = new PanelClienteOrdenar(usefulPanel, contentPanel, chooseAnOptionPanel, carritoPanel);
         adminPanel = new PanelLogin(usefulPanel, contentPanel, chooseAnOptionPanel);
+        
     }
     
 
@@ -91,6 +96,7 @@ public class MainWindow extends javax.swing.JFrame {
         imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO.png"))); // NOI18N
         topPanel.add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 220));
 
+        usefulPanel.setBackground(new java.awt.Color(86, 73, 64));
         usefulPanel.setLayout(new java.awt.CardLayout());
         topPanel.add(usefulPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 330, 650));
 
@@ -105,6 +111,11 @@ public class MainWindow extends javax.swing.JFrame {
         chooseAnOptionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnClient.setBackground(new java.awt.Color(212, 212, 212));
+        btnClient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClientMouseClicked(evt);
+            }
+        });
         btnClient.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -170,6 +181,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         cargarPanel(adminPanel);
     }//GEN-LAST:event_btnAdminMouseClicked
+
+    private void btnClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientMouseClicked
+        // TODO add your handling code here:
+        cargarPanel(clienteOrdenarPanel);
+        Utilities.cargarPanel(usefulPanel, carritoPanel);
+    }//GEN-LAST:event_btnClientMouseClicked
 
     /**
      * @param args the command line arguments

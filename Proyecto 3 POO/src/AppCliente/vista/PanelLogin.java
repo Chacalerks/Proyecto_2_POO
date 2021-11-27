@@ -168,17 +168,7 @@ public class PanelLogin extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(null, "Los datos no coinciden!", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        
-        // se crea una peticion de tipo INGRESAR que devolverá un boolean como respuesta.
-        // esto por definición de los servicios provistos por la aplicación servidora
-        
-        
-        
-        
-
-        usefulPanel.setBackground(Color.red);
-        
+        }        
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
