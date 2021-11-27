@@ -178,19 +178,22 @@ public class Controlador {
         return adminPedidos.agregar(nuevoPedido);        
 
     }
-    
-    public ArrayList<Producto> topTEN(){
+    /**
+     * Obtiene el top ten de los alimentos más pedidos
+     * @return  ArrayList de lso 10 alimentos más peiddos
+     */
+    public ArrayList<Alimento> topTEN(){
         Producto lista[] = new Producto[adminAlimentos.getContadorAlimentos()];
-        ArrayList<Producto> alimentosTop = new ArrayList();
+        ArrayList<Alimento> alimentosTop = new ArrayList();
         int index = 0;
         for(Alimento i: adminAlimentos.getAllAlimentos()){
             lista[index] = new Producto(i,adminPedidos.contarAlimento(i));            
             index++;
         }
         Utilities.sortProductos(lista);
-        for(Producto i: lista){
-            alimentosTop.add(i);
-        }  
+        for (int i = 0; i < 10; i++) {
+             alimentosTop.add(lista[i].getProducto());
+        } 
         return alimentosTop;
     }
     

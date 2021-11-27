@@ -24,6 +24,7 @@ public class PanelAdminSettings extends javax.swing.JPanel {
      */
     private JPanel contentPanel;
     private JPanel backPanel;
+    
     public PanelAdminSettings(JPanel content, JPanel back) {
         initComponents();
         contentPanel = content;
