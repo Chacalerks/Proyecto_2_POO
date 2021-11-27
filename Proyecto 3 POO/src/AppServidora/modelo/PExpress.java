@@ -42,16 +42,18 @@ public class PExpress extends Pedido{
         this.direccion = direccion;
     }
 
-    public static int getCostoEmpaque() {
-        return costoEmpaque;
+    public double getCostoEmpaque() {
+        Double dato = (double)carrito.getTotalPrecio()*((double)Constantes.getContantEmpaque()/100);
+        return dato;
     }
 
     public static void setCostoEmpaque(int costoEmpaque) {
         PExpress.costoEmpaque = costoEmpaque;
     }
 
-    public static int getCostoExpress() {
-        return costoExpress;
+    public double getCostoExpress() {
+        Double dato = (double)carrito.getTotalPrecio()*((double)Constantes.getContanteEntrega()/100);
+        return dato;
     }
 
     public static void setCostoExpress(int costoExpress) {
@@ -65,8 +67,13 @@ public class PExpress extends Pedido{
 
     @Override
     public String mostrarDesgloce() {
-        String datos = "";
-        return datos;
+        String datos = super.carrito.toString(); 
+        double total = carrito.getTotalPrecio(), empaque = getCostoEmpaque(), envio = getCostoExpress();
+        
+        datos += "\n + empaque:            \t"+String.format("%.2f", empaque);
+        datos += "\n + envio:              \t\t"+String.format("%.2f", envio);
+        datos += "\n\nTOTAL:               \t\t"+String.format("%.2f", total+envio+empaque);
+        return datos; 
     }
     
     

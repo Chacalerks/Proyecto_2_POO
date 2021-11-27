@@ -11,7 +11,7 @@ package AppServidora.modelo;
  */
 public abstract class Constantes{
     
-     public static int contanteEntrega =321;
+     public static int contanteEntrega;
      public static int contantEmpaque;
 
     public static int getContanteEntrega() {

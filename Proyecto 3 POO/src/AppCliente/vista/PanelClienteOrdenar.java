@@ -44,7 +44,7 @@ public class PanelClienteOrdenar extends javax.swing.JPanel {
         backPanel = back;
         carritoPanel = carrito;
         
-        pedidoMenuPanel = new PanelPedidoMenu(useful,content, this, this.carrito);
+        pedidoMenuPanel = new PanelPedidoMenu(carritoPanel,content, this, this.carrito);
         initComponents();
 
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));

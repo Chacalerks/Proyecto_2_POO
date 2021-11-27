@@ -6,10 +6,12 @@
 package AppCliente.vista;
 
 import static AppCliente.vista.MainWindow.last;
+import AppServidora.modelo.Producto;
 import AppServidora.modelo.TPlatillo;
 import AppServidora.modelo.TVisibilidad;
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -90,6 +92,24 @@ public abstract class Utilities {
             case NO_VISIBLE -> 1;
             default -> -1;
         };
+    }
+    
+    public static void sortProductos(Producto arr[]){
+        int n = arr.length;
+
+        for (int i = 1; i < n; ++i) {
+            Producto key = arr[i];
+            int j = i - 1;
+            
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && arr[j].getCantidadSeleccionada() < key.getCantidadSeleccionada()) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
     }
 
     

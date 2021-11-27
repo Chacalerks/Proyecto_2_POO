@@ -42,6 +42,10 @@ public class PRecoger extends Pedido {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+    public double getCostoEmpaque() {
+        Double dato = (double)carrito.getTotalPrecio()*((double)Constantes.getContantEmpaque()/100);
+        return dato;
+    }
 
     @Override
     public String toString() {
@@ -50,10 +54,13 @@ public class PRecoger extends Pedido {
 
     @Override
     public String mostrarDesgloce() {
-        String datos = "";
+        String datos = super.carrito.toString(); 
+        double total = carrito.getTotalPrecio(), empaque = getCostoEmpaque();
         
-        return datos;        
+        datos += "\n + empaque:            \t"+String.format("%.2f", empaque);
+        datos += "\n\nTOTAL:               \t\t"+String.format("%.2f", total+empaque);
+        return datos;       
     }
-    
+
     
 }

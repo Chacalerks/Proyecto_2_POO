@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author erksm
  */
-public class PanelPedidoMenu extends javax.swing.JPanel {
+public class PanelEstadisticasMenu extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelPedidoMenu
@@ -21,23 +21,19 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
     private JPanel contentPanel;
     private JPanel backPanel;
     
-    private PanelPedidoMesa pedidoMesa;  
-    private PanelPedidoRecoger pedidoRecoger;
-    private PanelPedidoExpress pedidoExpress;
+
     
-    public PanelPedidoMenu(JPanel useful,JPanel content, JPanel back, Carrito carrito) {
+    public PanelEstadisticasMenu(JPanel useful,JPanel content, JPanel back) {
         initComponents();
         usefulPanel = useful;
         contentPanel = content; 
         backPanel = back;
         //panelCatalogo = new PanelCatalogo(useful, content, (JPanel)this);
         
-        pedidoMesa = new PanelPedidoMesa(useful, content, this, carrito);
-        pedidoRecoger = new PanelPedidoRecoger(useful,content, this, carrito);
-        pedidoExpress = new PanelPedidoExpress(useful,content, this, carrito);
-        imgExpress.setIcon(Utilities.loadResizeIcon("src\\img\\express.png", 150));        
-        imgREcoger.setIcon(Utilities.loadResizeIcon("src\\img\\recoger.png", 150));  
-        imgMesa.setIcon(Utilities.loadResizeIcon("src\\img\\mesa.png", 150));  
+
+        imgGrafics.setIcon(Utilities.loadResizeIcon("src\\img\\grafics.png", 150));        
+        imgNunca.setIcon(Utilities.loadResizeIcon("src\\img\\never.png", 150));  
+        imgTopTen.setIcon(Utilities.loadResizeIcon("src\\img\\top-10.png", 150));  
         
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));
     }
@@ -52,13 +48,13 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         btnSitio = new javax.swing.JPanel();
-        imgMesa = new javax.swing.JLabel();
+        imgTopTen = new javax.swing.JLabel();
         lbSismos17 = new javax.swing.JLabel();
         btnRecoger = new javax.swing.JPanel();
-        imgREcoger = new javax.swing.JLabel();
+        imgNunca = new javax.swing.JLabel();
         lbSismos16 = new javax.swing.JLabel();
         btnExpress = new javax.swing.JPanel();
-        imgExpress = new javax.swing.JLabel();
+        imgGrafics = new javax.swing.JLabel();
         lbSismos15 = new javax.swing.JLabel();
         imgArrowLeft = new javax.swing.JLabel();
         lbSismos14 = new javax.swing.JLabel();
@@ -74,20 +70,20 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         });
         btnSitio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgMesa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgMesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
-        imgMesa.setToolTipText("");
-        imgMesa.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        imgMesa.setIconTextGap(2);
-        imgMesa.setPreferredSize(new java.awt.Dimension(500, 500));
-        btnSitio.add(imgMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
+        imgTopTen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgTopTen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
+        imgTopTen.setToolTipText("");
+        imgTopTen.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        imgTopTen.setIconTextGap(2);
+        imgTopTen.setPreferredSize(new java.awt.Dimension(500, 500));
+        btnSitio.add(imgTopTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
 
         lbSismos17.setBackground(new java.awt.Color(0, 0, 0));
         lbSismos17.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         lbSismos17.setForeground(new java.awt.Color(0, 0, 0));
-        lbSismos17.setText("En Sitio");
+        lbSismos17.setText("Top - TEN");
         lbSismos17.setToolTipText("");
-        btnSitio.add(lbSismos17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 90, 40));
+        btnSitio.add(lbSismos17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 120, 40));
 
         add(btnSitio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 250, 250));
 
@@ -99,18 +95,18 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         });
         btnRecoger.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgREcoger.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgREcoger.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
-        imgREcoger.setToolTipText("");
-        imgREcoger.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        imgREcoger.setIconTextGap(2);
-        imgREcoger.setPreferredSize(new java.awt.Dimension(500, 500));
-        btnRecoger.add(imgREcoger, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
+        imgNunca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgNunca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
+        imgNunca.setToolTipText("");
+        imgNunca.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        imgNunca.setIconTextGap(2);
+        imgNunca.setPreferredSize(new java.awt.Dimension(500, 500));
+        btnRecoger.add(imgNunca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
 
         lbSismos16.setBackground(new java.awt.Color(0, 0, 0));
         lbSismos16.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         lbSismos16.setForeground(new java.awt.Color(0, 0, 0));
-        lbSismos16.setText("Recoger");
+        lbSismos16.setText("Nunca");
         lbSismos16.setToolTipText("");
         btnRecoger.add(lbSismos16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 110, 40));
 
@@ -124,18 +120,18 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         });
         btnExpress.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgExpress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgExpress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
-        imgExpress.setToolTipText("");
-        imgExpress.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        imgExpress.setIconTextGap(2);
-        imgExpress.setPreferredSize(new java.awt.Dimension(500, 500));
-        btnExpress.add(imgExpress, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
+        imgGrafics.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgGrafics.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
+        imgGrafics.setToolTipText("");
+        imgGrafics.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        imgGrafics.setIconTextGap(2);
+        imgGrafics.setPreferredSize(new java.awt.Dimension(500, 500));
+        btnExpress.add(imgGrafics, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
 
         lbSismos15.setBackground(new java.awt.Color(0, 0, 0));
         lbSismos15.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         lbSismos15.setForeground(new java.awt.Color(0, 0, 0));
-        lbSismos15.setText("Express");
+        lbSismos15.setText("Gráficos");
         lbSismos15.setToolTipText("");
         btnExpress.add(lbSismos15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 100, 40));
 
@@ -162,14 +158,12 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
 
     private void btnSitioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSitioMouseClicked
         // TODO add your handling code here:
-        Utilities.cargarPanel(contentPanel, pedidoMesa);
-        pedidoMesa.loadDatos();
+
     }//GEN-LAST:event_btnSitioMouseClicked
 
     private void btnRecogerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecogerMouseClicked
         // TODO add your handling code here:
-        Utilities.cargarPanel(contentPanel, pedidoRecoger);
-        pedidoRecoger.loadDatos();
+
     }//GEN-LAST:event_btnRecogerMouseClicked
 
     private void imgArrowLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgArrowLeftMouseClicked
@@ -180,8 +174,7 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
 
     private void btnExpressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExpressMouseClicked
         // TODO add your handling code here:
-        Utilities.cargarPanel(contentPanel, pedidoExpress);
-        pedidoExpress.loadDatos();
+
     }//GEN-LAST:event_btnExpressMouseClicked
 
 
@@ -190,9 +183,9 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
     private javax.swing.JPanel btnRecoger;
     private javax.swing.JPanel btnSitio;
     private javax.swing.JLabel imgArrowLeft;
-    private javax.swing.JLabel imgExpress;
-    private javax.swing.JLabel imgMesa;
-    private javax.swing.JLabel imgREcoger;
+    private javax.swing.JLabel imgGrafics;
+    private javax.swing.JLabel imgNunca;
+    private javax.swing.JLabel imgTopTen;
     private javax.swing.JLabel lbSismos14;
     private javax.swing.JLabel lbSismos15;
     private javax.swing.JLabel lbSismos16;

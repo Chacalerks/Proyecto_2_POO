@@ -101,35 +101,7 @@ public class AdminAlimentos {
     public int getContadorAlimentos() {
         return contadorAlimentos;
     }
-    /**
-     * Retorna la cantidad de Alimentos registrados en un provincia especifica
-     * @param provincia es la provincia en la que se desea contar los Alimentos
-     * @return un int de cantidad de Alimentos filtrados
-     */
-    /*public int consultarAlimentos(NProvincia provincia){
-        int cant = 0;
-        for (Alimento Alimento : allAlimentos){
-            if(Alimento.getProvincia() == provincia){
-                cant++;
-            }
-        }
-        return cant;
-    }*/
-    /**
-     * Retorna la cantidad de Alimentos con un tipo de origen especifico
-     * @param origen es el origen de los Alimentos que se quiere contar
-     * @return un int de cantidad de Alimentos filtrados
-     */
-    /*public int consultarAlimentos(TOrigen origen){
-        int cant = 0;
-        for (Alimento Alimento : allAlimentos){
-            if(Alimento.getOrigen() == origen){
-                cant++;
-            }
-        }
-        return cant;
-    }*/   
-   
+
     /**
      * Retorna un arraylist de Alimentos que se encuentren entre dos fechas indicadas
      * @param tipo el tipo de donde se quieren los Alimentos

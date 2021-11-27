@@ -5,14 +5,17 @@
  */
 package AppServidora.negocio;
 
+import AppCliente.vista.Utilities;
 import AppServidora.modelo.Alimento;
 import AppServidora.modelo.Constantes;
 import AppServidora.modelo.Pedido;
+import AppServidora.modelo.Producto;
 import AppServidora.modelo.TVisibilidad;
 import general.Peticion;
 import general.TipoAccion;
 import java.util.ArrayList;
 import java.util.Calendar;
+import static java.util.Collections.list;
 import java.util.List;
 import java.util.StringTokenizer;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +34,11 @@ public class Controlador {
     public Controlador() {
     }
     
+    /**
+     * Se encarga de procesar el tipo de peticion
+     * @param peticionRecibida la peticion hecha por el cliente
+     * @return La peticion con los datos de salida seteados
+     */
     public Peticion procesarPeticion(Peticion peticionRecibida) {
         TipoAccion accion = peticionRecibida.getAccion();
 
@@ -42,9 +50,23 @@ public class Controlador {
             peticionRecibida.setDatosSalida(cargarAlimentos());
 
         }else if( accion== TipoAccion.INGRESAR){ 
-             String credenciales = (String) peticionRecibida.getDatosEntrada();
-             String [] partes  = credenciales.split("-"); 
-             boolean admOK = admUsr.validarAdm(partes[0], partes[1]);
+            String credenciales = (String) peticionRecibida.getDatosEntrada();
+            String [] partes  = credenciales.split("-"); 
+            boolean admOK = admUsr.validarAdm(partes[0], partes[1]);
+
+            List<Object> numbers = fileControl.loadFile("src\\AppServidora\\files\\numbers.dat");
+            if(numbers != null){
+                Constantes.setContantEmpaque((int)numbers.get(0));
+                Constantes.setContanteEntrega((int)numbers.get(1));
+            }
+            
+            List<Object> datosProductos = fileControl.loadFile("src\\AppServidora\\files\\pedidos.dat");
+            if(datosProductos != null){
+                for (Object i: datosProductos){                    
+                    adminPedidos.agregar((Pedido)i);
+                }
+            }
+            topTEN();
              peticionRecibida.setDatosSalida(admOK);
 
         }else if( accion== TipoAccion.VER_PRODUCTOS){
@@ -80,14 +102,18 @@ public class Controlador {
            peticionRecibida.setDatosSalida(consultarAlimento(codigo));                
 
         }else if( accion== TipoAccion.AGREGAR_PEDIDO){
-            Pedido pedido = (Pedido) peticionRecibida.getDatosEntrada();
+            Pedido pedido = (Pedido) peticionRecibida.getDatosEntrada();            
             peticionRecibida.setDatosSalida(agregarPedido(pedido));
+            fileControl.writeFile("src\\AppServidora\\files\\pedidos.dat", adminPedidos.getAllPedidos());
+            
         }else if( accion== TipoAccion.SETTINGS){
             ArrayList numbers = (ArrayList) peticionRecibida.getDatosEntrada();
             System.out.println("\n\nConstante recibida por el servidor "+(int)numbers.get(0));
             Constantes.setContantEmpaque((int)numbers.get(0));
             Constantes.setContanteEntrega((int)numbers.get(1));
+            fileControl.writeFile("src\\AppServidora\\files\\numbers.dat", numbers);
             peticionRecibida.setDatosSalida(true);
+            
         }else if( accion== TipoAccion.LOAD_CONST){
             ArrayList numbers = new ArrayList();
             
@@ -101,6 +127,13 @@ public class Controlador {
         
         return peticionRecibida;
     }
+    
+    /**
+     * Filtra la busque de a limentos 
+     * @param tipo valiabre de los alimentos que se quieren filtrar
+     * @param visibilidad varaible de los alimentos que se quieren filtrar
+     * @return ArrayList de los alimentos filtrados
+     */
     public ArrayList<Alimento> filtrarAlimentos(String tipo,TVisibilidad visibilidad ){
         return adminAlimentos.consultarAlimentos(tipo, visibilidad);
     }
@@ -144,6 +177,21 @@ public class Controlador {
     public boolean agregarPedido(Pedido nuevoPedido) {        
         return adminPedidos.agregar(nuevoPedido);        
 
+    }
+    
+    public ArrayList<Producto> topTEN(){
+        Producto lista[] = new Producto[adminAlimentos.getContadorAlimentos()];
+        ArrayList<Producto> alimentosTop = new ArrayList();
+        int index = 0;
+        for(Alimento i: adminAlimentos.getAllAlimentos()){
+            lista[index] = new Producto(i,adminPedidos.contarAlimento(i));            
+            index++;
+        }
+        Utilities.sortProductos(lista);
+        for(Producto i: lista){
+            alimentosTop.add(i);
+        }  
+        return alimentosTop;
     }
     
     public DefaultTableModel cargarAlimentosCliente(ArrayList<Alimento> alimentos) {

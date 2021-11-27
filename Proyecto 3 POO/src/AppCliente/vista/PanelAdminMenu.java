@@ -22,14 +22,16 @@ public class PanelAdminMenu extends javax.swing.JPanel {
     
     private PanelCatalogo panelCatalogo;
     private PanelAdminSettings adminSettingsPanel;
+    private PanelEstadisticasMenu estadisticasMenuPanel;
     public PanelAdminMenu(JPanel useful, JPanel content, JPanel back) {
         initComponents();
         usefulPanel = useful;
         contentPanel = content; 
         backPanel = back;
         
-        panelCatalogo = new PanelCatalogo(useful, content, (JPanel)this);
+        panelCatalogo = new PanelCatalogo(useful, content, this);
         adminSettingsPanel = new PanelAdminSettings(content, this);
+        estadisticasMenuPanel = new PanelEstadisticasMenu(useful,content, this);
         
         imgCatalogo.setIcon(Utilities.loadResizeIcon("src\\img\\catalogo.png", 150));
         imgPedidos.setIcon(Utilities.loadResizeIcon("src\\img\\pedidos.png", 150));        
@@ -192,11 +194,13 @@ public class PanelAdminMenu extends javax.swing.JPanel {
 
     private void btnEstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadisticasMouseClicked
         // TODO add your handling code here:
+        Utilities.cargarPanel(contentPanel, estadisticasMenuPanel);        
     }//GEN-LAST:event_btnEstadisticasMouseClicked
 
     private void btnSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingsMouseClicked
         // TODO add your handling code here:
         Utilities.cargarPanel(contentPanel, adminSettingsPanel);
+        adminSettingsPanel.loadDatos();
     }//GEN-LAST:event_btnSettingsMouseClicked
 
 

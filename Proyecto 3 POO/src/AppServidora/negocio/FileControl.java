@@ -27,7 +27,13 @@ public class FileControl {
     public FileControl() {
     }
     
-      public int writeFile(String nombreArchivo, ArrayList lista){
+    /**
+     * SE encarga de crear un archivo binario
+     * @param nombreArchivo el nombre del archivo a crear
+     * @param lista datos que se quieren guardar en el archvio
+     * @return Constantes para dar una respuesta
+     */
+    public int writeFile(String nombreArchivo, ArrayList lista){
 
         FileOutputStream archivoEscritura = null;
         ObjectOutputStream manejadorEscritura = null;
@@ -62,6 +68,11 @@ public class FileControl {
         }
     }
     
+    /**
+     * Se encarga de cargar los datos desde un archivo binario
+     * @param nombreArchivo el nombre del archivo a buiscar
+     * @return  ArrayList de los datos buscados
+     */
     public ArrayList loadFile(String nombreArchivo){
 
         ObjectInputStream manejadorLectura = null;

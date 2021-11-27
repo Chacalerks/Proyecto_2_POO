@@ -64,7 +64,7 @@ public class Carrito implements Serializable{
             datos += "\nPrecio Unidad: "+String.valueOf(i.getProducto().getPrecio());
             datos += "\n";
         }
-        datos += "\nTotal: "+String.valueOf(getTotalPrecio());
+        datos += "\nPrecio total productos: \t"+String.valueOf(getTotalPrecio());
         return datos;
     }
 }

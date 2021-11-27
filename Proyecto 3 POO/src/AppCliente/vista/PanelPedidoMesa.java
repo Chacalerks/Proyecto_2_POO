@@ -30,10 +30,12 @@ public class PanelPedidoMesa extends javax.swing.JPanel {
     private Carrito carrito;
     private JPanel contentPanel;
     private JPanel backPanel;
+    private JPanel usefulPanel;
     
-    public PanelPedidoMesa( JPanel content, JPanel back,Carrito carrito) {
+    public PanelPedidoMesa(JPanel useful,JPanel content, JPanel back,Carrito carrito) {
         initComponents();        
         this.carrito = carrito;
+        usefulPanel = useful;
         contentPanel = content; 
         backPanel = back;
         
@@ -157,8 +159,11 @@ public class PanelPedidoMesa extends javax.swing.JPanel {
             Client conexion = new Client(peticion);
             Object respuesta = conexion.getRespuestaServer();
             if(respuesta != null){
-                if((boolean)respuesta)
+                if((boolean)respuesta){
                     JOptionPane.showMessageDialog(null, "Se ha registrado su pedido correctamente!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    usefulPanel.removeAll();                   
+                }
+                    
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Hay datos Incorrectos!", "Error", JOptionPane.ERROR_MESSAGE);

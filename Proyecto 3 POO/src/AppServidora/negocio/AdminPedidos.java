@@ -7,6 +7,7 @@ package AppServidora.negocio;
 
 import AppServidora.modelo.Alimento;
 import AppServidora.modelo.Pedido;
+import AppServidora.modelo.Producto;
 import java.util.ArrayList;
 
 /**
@@ -78,6 +79,22 @@ public class AdminPedidos {
             }
         }             
         return false;
+    }
+    
+    /**
+     * Cuenta las veces que se repite un alimento entre todos los pedidos
+     * @param alimento, el alimento a contar
+     * @return la cantidadd de veces que se repite el alimento
+     */
+    public int contarAlimento(Alimento alimento){ 
+        int cont = 0;
+        for (Pedido p : allPedidos) {
+            for(Producto producto: p.getCarrito().getAllProducto()){
+                if(producto.getProducto().getCodigo().equals(alimento.getCodigo()))
+                    cont++;                
+            }            
+        }
+        return cont;
     }
 
 }

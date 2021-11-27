@@ -15,6 +15,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Cargador {
     
+    /**
+     * Carga los datos para ser visualizados en una tabla
+     * @param array arrayList de los datos que se van a mostrar
+     * @return tableModel con los datos a mostrar
+     */
     public static DefaultTableModel cargarAlimentos(ArrayList<Alimento> array){
         Object [] encabezado = {"Código", "Nombre", "Tamaño", "Piezas", "Calorías x Porcion", "Precio"};
         DefaultTableModel dtm = new DefaultTableModel(encabezado, array.size());
@@ -30,8 +35,13 @@ public class Cargador {
             
         }
         return dtm;
-   }
+    }
     
+     /**
+     * Carga los datos para ser visualizados en una tabla
+     * @param array arrayList de los datos que se van a mostrar
+     * @return tableModel con los datos a mostrar
+     */
     public static DefaultTableModel cargarAlimentosCliente(ArrayList<Alimento> array){
         Object [] encabezado = {"Código","Nombre", "Tamaño", "Piezas", "Calorías x Porcion","Calorías x Pieza", "Precio"};
         DefaultTableModel dtm = new DefaultTableModel(encabezado, array.size());

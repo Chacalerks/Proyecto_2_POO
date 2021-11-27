@@ -30,13 +30,13 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
     private Carrito carrito;
     private JPanel contentPanel;
     private JPanel backPanel;
-    
-    public PanelPedidoExpress(JPanel content, JPanel back, Carrito carrito) {
-        initComponents();    
+    private JPanel usefulPanel;
+    public PanelPedidoExpress(JPanel useful,JPanel content, JPanel back,Carrito carrito) {
+        initComponents();        
+        this.carrito = carrito;
+        usefulPanel = useful;
         contentPanel = content; 
         backPanel = back;
-        
-        this.carrito = carrito;
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));
     }
     public void loadDatos(){
@@ -46,13 +46,10 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
         if(respuesta != null){
             ArrayList array = (ArrayList)respuesta;
             Constantes.setContantEmpaque((int)array.get(0));
-            Constantes.setContanteEntrega((int)array.get(1));
-            System.out.println("Estamos entrando en la lista: "+(int)array.get(1));
-           
+            Constantes.setContanteEntrega((int)array.get(1));     
         }
         pExpress = new PExpress(0,carrito, carrito.getTotalPrecio());
         txtDesgloce.setText(pExpress.mostrarDesgloce());
-        System.out.println("\n\nEl porcentaje del express: "+Constantes.getContanteEntrega());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,12 +122,6 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOrdenarMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnOrdenarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnOrdenarMouseExited(evt);
-            }
         });
         jPanel1.add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 340, 50));
 
@@ -141,11 +132,10 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
         lbSismos15.setToolTipText("");
         jPanel1.add(lbSismos15, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 170, 30));
 
-        txtDireccion.setEditable(false);
         txtDireccion.setBackground(new java.awt.Color(212, 212, 212));
         txtDireccion.setColumns(20);
         txtDireccion.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        txtDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDireccion.setForeground(new java.awt.Color(0, 0, 0));
         txtDireccion.setRows(5);
         txtDireccion.setToolTipText("");
         jScrollPane1.setViewportView(txtDireccion);
@@ -190,21 +180,13 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
             Object respuesta = conexion.getRespuestaServer();
             if(respuesta != null){
                 if((boolean)respuesta)
-                JOptionPane.showMessageDialog(null, "Se ha registrado su pedido correctamente!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se ha registrado su pedido correctamente!", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Hay datos Incorrectos!", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnOrdenarMouseClicked
-
-    private void btnOrdenarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdenarMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrdenarMouseEntered
-
-    private void btnOrdenarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdenarMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrdenarMouseExited
 
     private void imgArrowLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgArrowLeftMouseClicked
         // TODO add your handling code here:

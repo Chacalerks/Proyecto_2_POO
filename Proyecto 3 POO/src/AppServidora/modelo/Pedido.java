@@ -51,10 +51,7 @@ public abstract class Pedido implements Serializable{
         this.precio = precio;
     }
     
-    public abstract String mostrarDesgloce();
-        
-    
-
+    public abstract String mostrarDesgloce();   
 
     @Override
     public String toString() {

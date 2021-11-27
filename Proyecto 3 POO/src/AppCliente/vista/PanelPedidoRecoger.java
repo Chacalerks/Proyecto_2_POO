@@ -7,9 +7,12 @@ package AppCliente.vista;
 
 import AppCliente.conexion.Client;
 import AppServidora.modelo.Carrito;
+import AppServidora.modelo.Constantes;
+import AppServidora.modelo.PExpress;
 import AppServidora.modelo.PRecoger;
 import general.Peticion;
 import general.TipoAccion;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -22,17 +25,32 @@ public class PanelPedidoRecoger extends javax.swing.JPanel {
     private Carrito carrito;
     private JPanel contentPanel;
     private JPanel backPanel;
+    private JPanel usefulPanel;
 
     /**
      * Creates new form PanelPedidoRecoger
      */
-    public PanelPedidoRecoger(JPanel content, JPanel back, Carrito carrito) {
-        initComponents();
+    public PanelPedidoRecoger(JPanel useful,JPanel content, JPanel back,Carrito carrito) {
+        initComponents();        
+        this.carrito = carrito;
+        usefulPanel = useful;
         contentPanel = content; 
         backPanel = back;
         
-        this.carrito = carrito;
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));
+    }
+    
+    public void loadDatos(){
+        Peticion peticion = new Peticion(TipoAccion.LOAD_CONST,"");
+        Client conexion = new Client(peticion);
+        Object respuesta = conexion.getRespuestaServer();
+        if(respuesta != null){
+            ArrayList array = (ArrayList)respuesta;
+            Constantes.setContantEmpaque((int)array.get(0));
+            Constantes.setContanteEntrega((int)array.get(1));     
+        }
+        pRecoger = new PRecoger(0,carrito, carrito.getTotalPrecio());
+        txtDesgloce.setText(pRecoger.mostrarDesgloce());
     }
 
     /**

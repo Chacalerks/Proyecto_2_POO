@@ -165,6 +165,7 @@ public class PanelLogin extends javax.swing.JPanel {
             boolean respuesta = (boolean) conexion.getRespuestaServer();
             if(respuesta){
                Utilities.cargarPanel(contentPanel, adminPanelMenu);
+               
             }else{
                 JOptionPane.showMessageDialog(null, "Los datos no coinciden!", "Error", JOptionPane.ERROR_MESSAGE);
             }
