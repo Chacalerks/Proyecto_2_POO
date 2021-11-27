@@ -11,14 +11,14 @@ package AppServidora.modelo;
  */
 public abstract class ConstanteEmpaque {
     
-    public static int contantEmpaque;
+    public static int contanteEmpaque;
 
     public static int getContantEmpaque() {
-        return contantEmpaque;
+        return contanteEmpaque;
     }
 
     public static void setContantEmpaque(int contantEmpaque) {
-        ConstanteEmpaque.contantEmpaque = contantEmpaque;
+        ConstanteEmpaque.contanteEmpaque = contantEmpaque;
     }
     
 }
