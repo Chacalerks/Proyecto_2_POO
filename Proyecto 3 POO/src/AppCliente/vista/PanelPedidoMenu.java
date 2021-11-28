@@ -5,7 +5,10 @@
  */
 package AppCliente.vista;
 
+import AppCliente.conexion.Client;
 import AppServidora.modelo.Carrito;
+import general.Peticion;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -62,6 +65,10 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         lbSismos15 = new javax.swing.JLabel();
         imgArrowLeft = new javax.swing.JLabel();
         lbSismos14 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtNombre = new javax.swing.JTextField();
+        lbSismos13 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,18 +165,37 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
         lbSismos14.setText("Choose an option");
         lbSismos14.setToolTipText("");
         add(lbSismos14, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 280, 40));
+
+        jPanel1.setBackground(new java.awt.Color(212, 212, 212));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 340, 10));
+
+        txtNombre.setBackground(new java.awt.Color(212, 212, 212));
+        txtNombre.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(99, 99, 99));
+        txtNombre.setBorder(null);
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 340, 30));
+
+        lbSismos13.setBackground(new java.awt.Color(0, 0, 0));
+        lbSismos13.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        lbSismos13.setForeground(new java.awt.Color(0, 0, 0));
+        lbSismos13.setText("Ingrese su nombre");
+        lbSismos13.setToolTipText("");
+        jPanel1.add(lbSismos13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 200, 30));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, 510, 190));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSitioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSitioMouseClicked
         // TODO add your handling code here:
         Utilities.cargarPanel(contentPanel, pedidoMesa);
-        pedidoMesa.loadDatos();
+        pedidoMesa.loadDatos(txtNombre.getText());
     }//GEN-LAST:event_btnSitioMouseClicked
 
     private void btnRecogerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecogerMouseClicked
         // TODO add your handling code here:
         Utilities.cargarPanel(contentPanel, pedidoRecoger);
-        pedidoRecoger.loadDatos();
+        pedidoRecoger.loadDatos(txtNombre.getText());
     }//GEN-LAST:event_btnRecogerMouseClicked
 
     private void imgArrowLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgArrowLeftMouseClicked
@@ -181,7 +207,7 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
     private void btnExpressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExpressMouseClicked
         // TODO add your handling code here:
         Utilities.cargarPanel(contentPanel, pedidoExpress);
-        pedidoExpress.loadDatos();
+        pedidoExpress.loadDatos(txtNombre.getText());
     }//GEN-LAST:event_btnExpressMouseClicked
 
 
@@ -193,9 +219,13 @@ public class PanelPedidoMenu extends javax.swing.JPanel {
     private javax.swing.JLabel imgExpress;
     private javax.swing.JLabel imgMesa;
     private javax.swing.JLabel imgREcoger;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbSismos13;
     private javax.swing.JLabel lbSismos14;
     private javax.swing.JLabel lbSismos15;
     private javax.swing.JLabel lbSismos16;
     private javax.swing.JLabel lbSismos17;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

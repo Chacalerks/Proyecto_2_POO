@@ -476,8 +476,10 @@ public class PanelCatalogo extends javax.swing.JPanel {
         Object respuesta = conexion.getRespuestaServer();
         if(respuesta != null){
             boolean answer = (boolean)respuesta;           
-            if(answer)
+            if(answer){
                 JOptionPane.showMessageDialog(null, "Se ha registrado un alimento!", "Listo", JOptionPane.INFORMATION_MESSAGE);
+                actualizarTabla();
+            }            
             else
                 JOptionPane.showMessageDialog(null, "Hubo un problema al guardar el alimento!", "Error", JOptionPane.ERROR_MESSAGE);            
         }
@@ -502,8 +504,10 @@ public class PanelCatalogo extends javax.swing.JPanel {
         Object respuesta = conexion.getRespuestaServer();
         if(respuesta != null){
             boolean answer = (boolean)respuesta;           
-            if(answer)
+            if(answer){
                 JOptionPane.showMessageDialog(null, "Se ha modificado un alimento!", "Listo", JOptionPane.INFORMATION_MESSAGE);
+                actualizarTabla();
+            }              
             else
                 JOptionPane.showMessageDialog(null, "Hubo un problema al modifcar el alimento!", "Error", JOptionPane.ERROR_MESSAGE);            
         }
@@ -512,24 +516,7 @@ public class PanelCatalogo extends javax.swing.JPanel {
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         // TODO add your handling code here:
-        String tipo = cboTipoPlatillo.getSelectedItem().toString();
-        TVisibilidad visibilidad = Utilities.convertNameToVisible(cboVisible.getSelectedItem().toString());
-        ArrayList datosEntrada = new ArrayList();
-        
-        datosEntrada.add("catalogoAlimentos.dat");
-        datosEntrada.add(Utilities.convertNameToTPlatillo(tipo));
-        datosEntrada.add(visibilidad);
-        datosEntrada.add(0);
-        
-        Peticion peticion = new Peticion(TipoAccion.VER_PRODUCTOS, datosEntrada);
-        Client conexion = new Client(peticion);
-        
-        
-        Object respuesta = conexion.getRespuestaServer();
-        if(respuesta != null){
-            tableAlimentos.setModel((DefaultTableModel)respuesta);
-            tableAlimentos.setDefaultEditor(Object.class, null);
-        }
+       actualizarTabla();
 
         
     }//GEN-LAST:event_btnBuscarMouseClicked
@@ -550,7 +537,27 @@ public class PanelCatalogo extends javax.swing.JPanel {
         // TODO add your handling code here:
         Utilities.cargarPanel(contentPanel, backPanel);
     }//GEN-LAST:event_imgArrowLeftMouseClicked
-
+    
+    public void actualizarTabla(){
+        String tipo = cboTipoPlatillo.getSelectedItem().toString();
+        TVisibilidad visibilidad = Utilities.convertNameToVisible(cboVisible.getSelectedItem().toString());
+        ArrayList datosEntrada = new ArrayList();
+        
+        datosEntrada.add("catalogoAlimentos.dat");
+        datosEntrada.add(Utilities.convertNameToTPlatillo(tipo));
+        datosEntrada.add(visibilidad);
+        datosEntrada.add(0);
+        
+        Peticion peticion = new Peticion(TipoAccion.VER_PRODUCTOS, datosEntrada);
+        Client conexion = new Client(peticion);
+        
+        
+        Object respuesta = conexion.getRespuestaServer();
+        if(respuesta != null){
+            tableAlimentos.setModel((DefaultTableModel)respuesta);
+            tableAlimentos.setDefaultEditor(Object.class, null);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAgregar;

@@ -5,7 +5,11 @@
  */
 package AppServidora.negocio;
 
+import AppCliente.vista.Utilities;
 import AppServidora.modelo.Alimento;
+import AppServidora.modelo.PExpress;
+import AppServidora.modelo.PMesa;
+import AppServidora.modelo.PRecoger;
 import AppServidora.modelo.Pedido;
 import AppServidora.modelo.Producto;
 import java.util.ArrayList;
@@ -43,10 +47,11 @@ public class AdminPedidos {
      * @return true: lo agrego, false: no se agrego
      */
     public boolean agregar(Pedido pedido){
-        for (Pedido p : allPedidos) {
-           if (p.equals(pedido))
+        for(Pedido i: allPedidos){
+            if(i.getId() == pedido.getId()){
                 return false;
-        }
+            }
+        }        
         allPedidos.add(pedido);
         contadorAlimentos++;
         return true;
@@ -95,6 +100,23 @@ public class AdminPedidos {
             }            
         }
         return cont;
+    }
+    
+    public ArrayList relacionProcentual(){
+        ArrayList percent = new ArrayList();
+        int contM = 0, contE = 0, contR = 0;
+        for(Pedido p : allPedidos) {            
+            if(p instanceof PMesa)
+                contM++;
+            else if(p instanceof PExpress)
+                contE++;
+            else if(p instanceof PRecoger)
+                contR++;           
+        }
+        percent.add((double)((contM*100)/contadorAlimentos));
+        percent.add((double)((contE*100)/contadorAlimentos));
+        percent.add((double)((contR*100)/contadorAlimentos));
+        return percent;
     }
 
 }

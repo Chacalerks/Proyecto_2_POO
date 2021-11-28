@@ -120,10 +120,21 @@ public class Controlador {
             numbers.add(Constantes.getContantEmpaque());
             numbers.add(Constantes.getContanteEntrega());
             peticionRecibida.setDatosSalida(numbers);
+        }else if( accion== TipoAccion.TOP_TEN){
+            peticionRecibida.setDatosSalida(cargarTOPTEN(topTEN()));
+        }else if( accion== TipoAccion.NUNCA){
+            peticionRecibida.setDatosSalida(cargarNunca(nunca()));
+        }else if( accion == TipoAccion.PORCENTAJE){
+            peticionRecibida.setDatosSalida(adminPedidos.relacionProcentual());
+        }else if( accion == TipoAccion.VER_PEDIDOS){
+            peticionRecibida.setDatosSalida(cargarPedidos(adminPedidos.getAllPedidos()));
+        }else if( accion == TipoAccion.CONSULTAR_PEDIDO){
+            int codigo = (int) peticionRecibida.getDatosEntrada();
+            peticionRecibida.setDatosSalida(consultarPedio(codigo));  
+        }else if( accion == TipoAccion.ELIMINAR_PEDIDO){
+            int codigo = (int) peticionRecibida.getDatosEntrada();
+            peticionRecibida.setDatosSalida(eliminarPedido(codigo));  
         }
-        
-        
-                
         
         return peticionRecibida;
     }
@@ -174,13 +185,14 @@ public class Controlador {
      * @param nuevoPedido El pedido a agregar
      * @return true/false si se agregó el sismo
      */    
-    public boolean agregarPedido(Pedido nuevoPedido) {        
+    public boolean agregarPedido(Pedido nuevoPedido) {   
+        nuevoPedido.setId(adminPedidos.getContadorAlimentos());
         return adminPedidos.agregar(nuevoPedido);        
 
     }
     /**
      * Obtiene el top ten de los alimentos más pedidos
-     * @return  ArrayList de lso 10 alimentos más peiddos
+     * @return  ArrayList de los 10 alimentos más peiddos
      */
     public ArrayList<Alimento> topTEN(){
         Producto lista[] = new Producto[adminAlimentos.getContadorAlimentos()];
@@ -191,10 +203,33 @@ public class Controlador {
             index++;
         }
         Utilities.sortProductos(lista);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
              alimentosTop.add(lista[i].getProducto());
-        } 
+        
         return alimentosTop;
+    }
+    
+    /**
+     * Obtiene los alimentos que nunca se han pedido
+     * @return  ArrayList de los alimentos que nunca se han pedido
+     */
+    public ArrayList<Alimento> nunca(){        
+        ArrayList<Alimento> alimentosNunca = new ArrayList();
+
+        for(Alimento i: adminAlimentos.getAllAlimentos()){
+            if(adminPedidos.contarAlimento(i) == 0)
+                alimentosNunca.add(i);         
+        }     
+        
+        return alimentosNunca;
+    }
+    
+    public Pedido consultarPedio(int id){
+        return adminPedidos.consultar(id);
+    }
+    
+    public boolean eliminarPedido(int id){
+        return adminPedidos.eliminar(id);
     }
     
     public DefaultTableModel cargarAlimentosCliente(ArrayList<Alimento> alimentos) {
@@ -203,5 +238,17 @@ public class Controlador {
     
     public DefaultTableModel cargarAlimentos(ArrayList<Alimento> alimentos) {
         return Cargador.cargarAlimentos(alimentos);
+    }
+    
+    public DefaultTableModel cargarTOPTEN(ArrayList<Alimento> alimentos) {
+        return Cargador.cargarTopTEN(alimentos);
+    }
+    
+    public DefaultTableModel cargarNunca(ArrayList<Alimento> alimentos) {
+        return Cargador.cargarNunca(alimentos);
+    }
+    
+    public DefaultTableModel cargarPedidos(ArrayList<Pedido> pedidos) {
+        return Cargador.cargarPedidos(pedidos);
     }
 }

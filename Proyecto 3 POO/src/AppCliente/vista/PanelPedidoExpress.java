@@ -13,6 +13,7 @@ import AppServidora.modelo.PMesa;
 import general.Peticion;
 import general.TipoAccion;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -39,16 +40,17 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
         backPanel = back;
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));
     }
-    public void loadDatos(){
+    public void loadDatos(String nombre){
         Peticion peticion = new Peticion(TipoAccion.LOAD_CONST,"");
         Client conexion = new Client(peticion);
         Object respuesta = conexion.getRespuestaServer();
         if(respuesta != null){
             ArrayList array = (ArrayList)respuesta;
             Constantes.setContantEmpaque((int)array.get(0));
-            Constantes.setContanteEntrega((int)array.get(1));     
+            Constantes.setContanteEntrega((int)array.get(1));
         }
-        pExpress = new PExpress(0,carrito, carrito.getTotalPrecio());
+        Date fecha = new Date(System.currentTimeMillis());        
+        pExpress = new PExpress(0,carrito, carrito.getTotalPrecio(),fecha,nombre);
         txtDesgloce.setText(pExpress.mostrarDesgloce());
     }
     /**
@@ -179,8 +181,11 @@ public class PanelPedidoExpress extends javax.swing.JPanel {
             Client conexion = new Client(peticion);
             Object respuesta = conexion.getRespuestaServer();
             if(respuesta != null){
-                if((boolean)respuesta)
+                if((boolean)respuesta){
                     JOptionPane.showMessageDialog(null, "Se ha registrado su pedido correctamente!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    PanelMenuInicial nuevo = new PanelMenuInicial(usefulPanel, contentPanel);
+                    Utilities.cargarPanel(contentPanel, nuevo);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Hay datos Incorrectos!", "Error", JOptionPane.ERROR_MESSAGE);

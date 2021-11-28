@@ -6,6 +6,10 @@
 package AppCliente.vista;
 
 import static AppCliente.vista.MainWindow.last;
+import AppServidora.modelo.PExpress;
+import AppServidora.modelo.PMesa;
+import AppServidora.modelo.PRecoger;
+import AppServidora.modelo.Pedido;
 import AppServidora.modelo.Producto;
 import AppServidora.modelo.TPlatillo;
 import AppServidora.modelo.TVisibilidad;
@@ -45,18 +49,23 @@ public abstract class Utilities {
         contentPanel.revalidate();
     }
     
-    public static String convertNameToT(TPlatillo tipo){
-        
+    public static String convertTipoPlatilloToName(String tipo){
+        String tipoPlato = "";
         if (tipo == null){
             return "";
         }
-        return switch (tipo) {
-            case ENTRADA -> "ENT";
-            case FUERTE -> "PRN";
-            case BEBIDA -> "BEB";
-            case POSTRE -> "PTR";
-            default -> "";
-        };
+        for(int i = 0; i<3; i++)
+            tipoPlato += tipo.charAt(i);
+        
+        if(tipoPlato.equals("ENT"))
+            return "Entrada";
+        else if(tipoPlato.equals("PRN"))
+            return "Fuerte";
+        else if(tipoPlato.equals("BEB"))
+            return "Bebida";
+        else if(tipoPlato.equals("PTR"))
+            return "Postre";
+        return "";
     }
     
     public static String convertNameToTPlatillo(String tipo){        
@@ -110,6 +119,17 @@ public abstract class Utilities {
             }
             arr[j + 1] = key;
         }
+    }
+    
+    public static String getTipoPedidoToString(Pedido p){
+        if(p instanceof PMesa)
+            return "En Sitio";
+        else if(p instanceof PExpress)
+            return "Express";
+        else if(p instanceof PRecoger)
+            return "Recoger";
+        
+        return "";
     }
 
     

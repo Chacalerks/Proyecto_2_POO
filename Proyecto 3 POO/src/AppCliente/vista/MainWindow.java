@@ -31,12 +31,11 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form FrmSaludo
      */
-    private PanelLogin adminPanel;
-    private PanelClienteOrdenar clienteOrdenarPanel;
-    private PanelCarrito carritoPanel;
-    public static JPanel last;
     
 
+    public static JPanel last;
+    
+    private PanelMenuInicial menuInicial;
     
     public MainWindow() {
         initComponents();
@@ -45,10 +44,9 @@ public class MainWindow extends javax.swing.JFrame {
         imgCliente.setIcon(Utilities.loadResizeIcon("src\\img\\cliente.png", 150));        
         imgLogo.setIcon(Utilities.loadResizeIcon("src\\img\\LOGO.png", 350));  
         
-        carritoPanel = new PanelCarrito();
-        clienteOrdenarPanel = new PanelClienteOrdenar(usefulPanel, contentPanel, chooseAnOptionPanel, carritoPanel);
-        adminPanel = new PanelLogin(usefulPanel, contentPanel, chooseAnOptionPanel);
+        menuInicial = new PanelMenuInicial(usefulPanel, contentPanel);
         
+        cargarPanel(menuInicial);
     }
     
 
@@ -179,13 +177,12 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
         // TODO add your handling code here:
 
-        cargarPanel(adminPanel);
+
     }//GEN-LAST:event_btnAdminMouseClicked
 
     private void btnClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientMouseClicked
         // TODO add your handling code here:
-        cargarPanel(clienteOrdenarPanel);
-        Utilities.cargarPanel(usefulPanel, carritoPanel);
+
     }//GEN-LAST:event_btnClientMouseClicked
 
     /**

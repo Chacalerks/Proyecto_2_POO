@@ -21,6 +21,9 @@ public class PanelEstadisticasMenu extends javax.swing.JPanel {
     private JPanel contentPanel;
     private JPanel backPanel;
     
+    private PanelEstadisticaTopTen topTen;
+    private PanelEstadisticaNunca nunca;
+    private PanelEstadisticaPorcentaje porcentaje;
 
     
     public PanelEstadisticasMenu(JPanel useful,JPanel content, JPanel back) {
@@ -29,8 +32,9 @@ public class PanelEstadisticasMenu extends javax.swing.JPanel {
         contentPanel = content; 
         backPanel = back;
         //panelCatalogo = new PanelCatalogo(useful, content, (JPanel)this);
-        
-
+        porcentaje = new PanelEstadisticaPorcentaje(content, back);
+        nunca = new PanelEstadisticaNunca(content, this);
+        topTen = new PanelEstadisticaTopTen(content, this);
         imgGrafics.setIcon(Utilities.loadResizeIcon("src\\img\\grafics.png", 150));        
         imgNunca.setIcon(Utilities.loadResizeIcon("src\\img\\never.png", 150));  
         imgTopTen.setIcon(Utilities.loadResizeIcon("src\\img\\top-10.png", 150));  
@@ -158,12 +162,16 @@ public class PanelEstadisticasMenu extends javax.swing.JPanel {
 
     private void btnSitioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSitioMouseClicked
         // TODO add your handling code here:
-
+        Utilities.cargarPanel(contentPanel, topTen);
+        topTen.loadDatos();
+        
+        
     }//GEN-LAST:event_btnSitioMouseClicked
 
     private void btnRecogerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecogerMouseClicked
         // TODO add your handling code here:
-
+        Utilities.cargarPanel(contentPanel, nunca);
+        nunca.loadDatos();
     }//GEN-LAST:event_btnRecogerMouseClicked
 
     private void imgArrowLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgArrowLeftMouseClicked
@@ -174,7 +182,8 @@ public class PanelEstadisticasMenu extends javax.swing.JPanel {
 
     private void btnExpressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExpressMouseClicked
         // TODO add your handling code here:
-
+        Utilities.cargarPanel(contentPanel, porcentaje);
+        porcentaje.loadDatos();
     }//GEN-LAST:event_btnExpressMouseClicked
 
 

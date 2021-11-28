@@ -23,6 +23,7 @@ public class PanelAdminMenu extends javax.swing.JPanel {
     private PanelCatalogo panelCatalogo;
     private PanelAdminSettings adminSettingsPanel;
     private PanelEstadisticasMenu estadisticasMenuPanel;
+    private PanelAdminPedido adminPedidos;
     public PanelAdminMenu(JPanel useful, JPanel content, JPanel back) {
         initComponents();
         usefulPanel = useful;
@@ -32,6 +33,7 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         panelCatalogo = new PanelCatalogo(useful, content, this);
         adminSettingsPanel = new PanelAdminSettings(content, this);
         estadisticasMenuPanel = new PanelEstadisticasMenu(useful,content, this);
+        adminPedidos = new PanelAdminPedido(content, this);
         
         imgCatalogo.setIcon(Utilities.loadResizeIcon("src\\img\\catalogo.png", 150));
         imgPedidos.setIcon(Utilities.loadResizeIcon("src\\img\\pedidos.png", 150));        
@@ -112,6 +114,11 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         add(btnCatalogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, 250, 250));
 
         btnPedidos.setBackground(new java.awt.Color(212, 212, 212));
+        btnPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPedidosMouseClicked(evt);
+            }
+        });
         btnPedidos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgPedidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,6 +209,12 @@ public class PanelAdminMenu extends javax.swing.JPanel {
         Utilities.cargarPanel(contentPanel, adminSettingsPanel);
         adminSettingsPanel.loadDatos();
     }//GEN-LAST:event_btnSettingsMouseClicked
+
+    private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
+        // TODO add your handling code here:
+        Utilities.cargarPanel(contentPanel, adminPedidos);
+        adminPedidos.loadDatos();
+    }//GEN-LAST:event_btnPedidosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,6 +6,7 @@
 package AppServidora.modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -15,9 +16,11 @@ public class PMesa extends Pedido {
     
     private int mesa;
 
-    public PMesa(int id, Carrito carrito, double precio) {
-        super(id, carrito, precio);
+    public PMesa(int id, Carrito carrito, double precio, Date date, String name) {
+        super(id, carrito, precio, date, name);
     }
+
+    
 
     public int getMesa() {
         return mesa;
@@ -29,11 +32,12 @@ public class PMesa extends Pedido {
 
     @Override
     public String toString() {
-        return "PMesa: " + "número de mesa:" + mesa;
+        return "\nNúmero de mesa: \t" + mesa;
     }
 
     @Override
     public String mostrarDesgloce() {
+        super.precio = super.carrito.getTotalPrecio();
         String datos = super.carrito.toString();        
         return datos; 
     }

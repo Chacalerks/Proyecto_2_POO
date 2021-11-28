@@ -5,6 +5,8 @@
  */
 package AppServidora.modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author muril
@@ -15,16 +17,12 @@ public class PExpress extends Pedido{
     private String direccion;
     private static int costoEmpaque = Constantes.getContantEmpaque();
     private static int costoExpress  = Constantes.getContanteEntrega();
-    
-    public PExpress(int id, Carrito carrito, double precio) {
-        super(id, carrito, precio);
-    }
 
-    public PExpress(String númeroTelefono, String direccion, int id, Carrito carrito, double precio) {
-        super(id, carrito, precio);
-        this.númeroTelefono = númeroTelefono;
-        this.direccion = direccion;
-    }   
+    public PExpress(int id, Carrito carrito, double precio, Date date, String name) {
+        super(id, carrito, precio, date, name);
+    }
+    
+     
 
     public String getNúmeroTelefono() {
         return númeroTelefono;
@@ -62,7 +60,7 @@ public class PExpress extends Pedido{
 
     @Override
     public String toString() {
-        return "PExpress:" + "numero de telefono: " + númeroTelefono + ", direccion: " + direccion;
+        return "\nCelular: \t" + númeroTelefono + "\nDirección: \t" + direccion;
     }
 
     @Override
@@ -73,6 +71,7 @@ public class PExpress extends Pedido{
         datos += "\n + empaque:            \t"+String.format("%.2f", empaque);
         datos += "\n + envio:              \t\t"+String.format("%.2f", envio);
         datos += "\n\nTOTAL:               \t\t"+String.format("%.2f", total+envio+empaque);
+        super.precio = total+envio+empaque;
         return datos; 
     }
     

@@ -36,6 +36,7 @@ public class PanelLogin extends javax.swing.JPanel {
         
         imgLogoF.setIcon(Utilities.loadResizeIcon("src\\img\\logoF.png", 400));
         imgArrowLeft.setIcon(Utilities.loadResizeIcon("src\\img\\arrow-left.png", 50));
+        txtPassword.setEchoChar('*');
     }
 
     /**
@@ -55,9 +56,9 @@ public class PanelLogin extends javax.swing.JPanel {
         txtUsername = new javax.swing.JTextField();
         lbSismos12 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        txtPassword = new javax.swing.JTextField();
         lbSismos13 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         lbSismos14 = new javax.swing.JLabel();
         imgArrowLeft = new javax.swing.JLabel();
 
@@ -96,12 +97,6 @@ public class PanelLogin extends javax.swing.JPanel {
         jPanel1.add(lbSismos12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 130, 30));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 340, 10));
 
-        txtPassword.setBackground(new java.awt.Color(212, 212, 212));
-        txtPassword.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(99, 99, 99));
-        txtPassword.setBorder(null);
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 360, 30));
-
         lbSismos13.setBackground(new java.awt.Color(0, 0, 0));
         lbSismos13.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         lbSismos13.setForeground(new java.awt.Color(0, 0, 0));
@@ -128,6 +123,16 @@ public class PanelLogin extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 340, 50));
+
+        txtPassword.setBackground(new java.awt.Color(212, 212, 212));
+        txtPassword.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        txtPassword.setBorder(null);
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 212, 340, 30));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 1210, 500));
 
@@ -186,6 +191,10 @@ public class PanelLogin extends javax.swing.JPanel {
 
     }//GEN-LAST:event_imgArrowLeftMouseClicked
 
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnLogin;
@@ -199,7 +208,7 @@ public class PanelLogin extends javax.swing.JPanel {
     private javax.swing.JLabel lbSismos12;
     private javax.swing.JLabel lbSismos13;
     private javax.swing.JLabel lbSismos14;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

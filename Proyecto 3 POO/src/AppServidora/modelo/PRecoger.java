@@ -5,6 +5,8 @@
  */
 package AppServidora.modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author muril
@@ -15,17 +17,16 @@ public class PRecoger extends Pedido {
     private String celular;
     private static int costoEmpaque = Constantes.getContantEmpaque();
 
-    public PRecoger(int id, Carrito carrito, double precio) {
-        super(id, carrito, precio);
-    }
-    
-    
-    public PRecoger(String nombre, String celular, int id, Carrito carrito, double precio, String tipoEntrega) {
-        super(id, carrito, precio);
+    public PRecoger(String nombre, String celular, int id, Carrito carrito, double precio, Date date, String name) {
+        super(id, carrito, precio, date, name);
         this.nombre = nombre;
         this.celular = celular;
-        costoEmpaque = ConstanteEmpaque.getContantEmpaque(); 
     }
+    
+    public PRecoger(int id, Carrito carrito, double precio, Date date, String name) {
+        super(id, carrito, precio, date, name);
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -49,18 +50,20 @@ public class PRecoger extends Pedido {
 
     @Override
     public String toString() {
-        return "PRecoger: " + "nombre: " + nombre + ", celular: " + celular;
+        return "\n Nombre: \t" + nombre + "\n Celular: \t" + celular;
     }
 
     @Override
-    public String mostrarDesgloce() {
+    public String mostrarDesgloce() {        
         String datos = super.carrito.toString(); 
-        double total = carrito.getTotalPrecio(), empaque = getCostoEmpaque();
-        
+        double total = carrito.getTotalPrecio(), empaque = getCostoEmpaque();        
         datos += "\n + empaque:            \t"+String.format("%.2f", empaque);
         datos += "\n\nTOTAL:               \t\t"+String.format("%.2f", total+empaque);
+        super.precio = total+empaque;
         return datos;       
     }
+
+
 
     
 }
